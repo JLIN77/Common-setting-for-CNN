@@ -2,9 +2,9 @@
 This is repositories consite of two parts. 
 
 ## settings.py 
-### weight_initialization
-### optimizer SGD/Adam
-### learning rate 
+* 1. weight_initialization
+### 2. optimizer SGD/Adam
+### 3. learning rate 
 
 ## demo.py
 ### step 1: select device: gpu/cpu
