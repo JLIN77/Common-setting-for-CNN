@@ -51,30 +51,5 @@ optimizer = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters(
                              
 # step 6: lr
 lr_scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, config.lr_list, gamma=0.9, last_epoch=-1)
-
-# train epoch
-for epoch in range(config.num_epoch):
-    lr_scheduler.step()
-    lr = optimizer.state_dict()['param_groups'][0]['lr']
-    model.train().to(device=device)
-    
-    for i, (inputs, targets) in enumerate(dataloader_train):
-        inputs = data.to(device).float()
-        labels = label.to(device).float()
-        outputs = model(inputs)
-        loss = criterion(outputs, targets)
-        loss.backward()
-        optimizer.step()
-    
-    model.eval().to(device)
-    with torch.no_grad():
-        for j, (inputs, targets) in enumerate(dataloader_val):
-            inputs = data.to(device).float()
-            labels = label.to(device).float()
-            outputs = model(inputs)
-            loss = criterion(outputs, targets)
-            
-     torch.save(model, checkpoint_weight)
-        
         
     
